@@ -12,3 +12,4 @@
 
 Link to [site](https://ludzikk.github.io/CSGO-Gambling-Site/), it was built using [GitHub Pages](https://pages.github.com/).
 # SatchelSpin2
+# SatchelSpin2
