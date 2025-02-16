@@ -1,38 +1,21 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSGOLuck | Best csgo casino</title>
     <link rel="icon" href="./dist/img/other/icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link href="./dist/css/hamburgers/hamburgers.min.css" rel="stylesheet" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <link rel="stylesheet" href="./dist/css/style.min.css" />
-    <script
-      src="https://kit.fontawesome.com/bdb2f8ae99.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/bdb2f8ae99.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <nav class="nav above" data-aos="fade-in" data-aos-duration="500" data-aos-once="true">
       <ul class="nav__list">
         <li class="nav__list-item">
-          <a
-            class="nav__list-item-link nav__list-item-link--logo nav__list-item-link--color above"
-            href="index.html"
-          >
-            <img
-              class="nav__list-item-link-logo"
-              src="./dist/img/other/icon.png"
-              alt="csgoluck Logo"
-            />
+          <a class="nav__list-item-link nav__list-item-link--logo nav__list-item-link--color above" href="index.html">
+            <img class="nav__list-item-link-logo" src="./dist/img/other/icon.png" alt="csgoluck Logo" />
             <p class="nav__list-item-link-text">
               <span class="nav__list-item-link-text-green">CSGO</span>Luck
             </p>
@@ -40,11 +23,7 @@
         </li>
         <li class="nav__list-item small">
           <p class="nav__list-item-balance">
-            <img
-              class="nav__list-item-balance-icon"
-              src="./dist/img/other/coin.png"
-              alt="Coin Icon"
-            />
+            <img class="nav__list-item-balance-icon" src="./dist/img/other/coin.png" alt="Coin Icon" />
             <span class="nav__list-item-balance-amount" id="user-balance">100.00</span>
           </p>
         </li>
@@ -59,6 +38,7 @@
     </nav>
 
     <script>
+      // Configuration for Discord OAuth2
       const clientId = '1340701003523297320'; // Your Discord client ID
       const redirectUri = 'https://doyalikess.github.io/SatchelSpin2/index.html'; // Redirect URI set in the Discord Developer Portal
 
@@ -80,8 +60,8 @@
         // The user is logged in and we have the OAuth2 code
         console.log('Discord code:', code);
 
-        // Make an API call to get the user data
-        fetch(`https://discord.com/api/oauth2/token`, {
+        // Fetch the access token by sending the code to Discord's token endpoint
+        fetch('https://discord.com/api/v10/oauth2/token', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -109,7 +89,7 @@
           .then(userData => {
             console.log('User data:', userData);
 
-            // Display the username in the UI
+            // Display the user's username in the UI
             document.getElementById('user-balance').textContent = `Welcome, ${userData.username}`;
           })
           .catch(err => {
