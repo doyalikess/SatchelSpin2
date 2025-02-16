@@ -67,12 +67,14 @@
 
       function loginWithDiscord() {
         // Redirect to Discord OAuth2 login page
+        console.log('Redirecting to Discord OAuth2...');
         window.location.href = discordOAuthUrl;
       }
 
       // After the user is redirected back to the site, we need to handle the OAuth2 response
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get('code');
+      console.log('OAuth2 code:', code);
 
       if (code) {
         // The user is logged in and we have the OAuth2 code
@@ -94,8 +96,8 @@
         })
         .then(response => response.json())
         .then(data => {
+          console.log('Access token response:', data);
           const accessToken = data.access_token;
-          console.log('Access token:', accessToken);
 
           // Now use the access token to fetch the user data
           fetch('https://discord.com/api/v10/users/@me', {
@@ -117,6 +119,8 @@
         .catch(err => {
           console.error('Error exchanging code for access token:', err);
         });
+      } else {
+        console.log('No code in URL. Awaiting Discord login.');
       }
     </script>
   </body>
