@@ -21,87 +21,20 @@
             </p>
           </a>
         </li>
-        <li class="nav__list-item small">
-          <p class="nav__list-item-balance">
-            <img class="nav__list-item-balance-icon" src="./dist/img/other/coin.png" alt="Coin Icon" />
-            <span class="nav__list-item-balance-amount" id="user-balance">100.00</span>
-          </p>
-        </li>
-        <li class="nav__list-item small">
-          <a class="nav__list-item-link nav__list-item-link--deposit" href="deposit.html">Deposit</a>
-        </li>
-        <!-- Add the Discord login button -->
-        <li class="nav__list-item small">
-          <button class="discord-login-btn" onclick="loginWithDiscord()">Login with Discord</button>
-        </li>
       </ul>
     </nav>
 
+    <div class="login-container">
+      <p>
+        <a href="https://discord.com/oauth2/authorize?client_id=1340701003523297320&redirect_uri=https%3A%2F%2Fdoyalikess.github.io%2FSatchelSpin2%2Findex.html&response_type=code&scope=identify" class="discord-login-text">
+          Click here to login with Discord
+        </a>
+      </p>
+    </div>
+
     <script>
-      // Configuration for Discord OAuth2
-      const clientId = '1340701003523297320'; // Your Discord client ID
-      const redirectUri = 'https://doyalikess.github.io/SatchelSpin2/index.html'; // Redirect URI set in the Discord Developer Portal
-
-      // The URL to redirect users to Discord for OAuth2 login
-      const discordOAuthUrl = `https://discord.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=identify`;
-
-      function loginWithDiscord() {
-        // Redirect to Discord OAuth2 login page
-        console.log('Redirecting to Discord OAuth2...');
-        window.location.href = discordOAuthUrl;
-      }
-
-      // After the user is redirected back to the site, we need to handle the OAuth2 response
-      const urlParams = new URLSearchParams(window.location.search);
-      const code = urlParams.get('code');
-      console.log('OAuth2 code:', code);
-
-      if (code) {
-        // The user is logged in and we have the OAuth2 code
-        console.log('Discord code:', code);
-
-        // Fetch the access token by sending the code to Discord's token endpoint
-        fetch('https://discord.com/api/v10/oauth2/token', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: new URLSearchParams({
-            client_id: clientId,
-            client_secret: 'E7ToLGdy63sNDD1HBFMHdDsKvABbXO5D', // Your Discord client secret
-            code: code,
-            grant_type: 'authorization_code',
-            redirect_uri: redirectUri,
-          })
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Access token response:', data);
-          const accessToken = data.access_token;
-
-          // Now use the access token to fetch the user data
-          fetch('https://discord.com/api/v10/users/@me', {
-            headers: {
-              'Authorization': `Bearer ${accessToken}`
-            }
-          })
-          .then(response => response.json())
-          .then(userData => {
-            console.log('User data:', userData);
-
-            // Display the user's username in the UI
-            document.getElementById('user-balance').textContent = `Welcome, ${userData.username}`;
-          })
-          .catch(err => {
-            console.error('Error fetching user data:', err);
-          });
-        })
-        .catch(err => {
-          console.error('Error exchanging code for access token:', err);
-        });
-      } else {
-        console.log('No code in URL. Awaiting Discord login.');
-      }
+      // Just a simple message to indicate the user is on the login page.
+      console.log("Please login with Discord.");
     </script>
   </body>
 </html>
